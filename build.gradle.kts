@@ -21,39 +21,21 @@ dependencies {
 }
 
 tasks {
-    runServer {
-        // Configure the Minecraft version for our task.
-        // This is the only required configuration besides applying the plugin.
-        // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.21")
-    }
-
     shadowJar {
-        archiveClassifier.set("all")
-        relocate("kotlin", "dev.hiroine.flux.libs.kotlin")
+        archiveClassifier.set("") // 'all' 접미사를 제거하여 깔끔하게 배포
+        relocate("kotlin", "dev.hiro.flux.libs.kotlin") // 충돌 방지 재배치
     }
 }
 
 publishing {
     publications {
-        create<MavenPublication>("gpr") {
-            // ShadowJar를 배포하도록 설정
+        create<MavenPublication>("maven") {
+            // ShadowJar 작업의 결과물을 배포하도록 설정
             project.shadow.component(this)
 
-            groupId = "dev.hiro"
+            groupId = project.group.toString()
             artifactId = "flux-api"
-            version = "1.0.0"
-        }
-    }
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            // 사용자명/리포지토리명 경로를 정확히 입력하세요
-            url = uri("https://maven.pkg.github.com/사용자명/FluxAPI")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR") // 실행하는 유저 이름 자동 인식
-                password = System.getenv("GITHUB_TOKEN") // 실행 환경의 토큰 자동 인식
-            }
+            version = project.version.toString()
         }
     }
 }
