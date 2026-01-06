@@ -23,7 +23,6 @@ dependencies {
 tasks {
     shadowJar {
         archiveClassifier.set("") // 'all' 접미사를 제거하여 깔끔하게 배포
-        relocate("kotlin", "dev.hiro.flux.libs.kotlin") // 충돌 방지 재배치
     }
 }
 
