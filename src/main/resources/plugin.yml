@@ -3,5 +3,4 @@ version: '1.0'
 main: dev.hiroine.flux.plugin.FluxAPI
 api-version: '1.21'
 commands:
-  example:
 
