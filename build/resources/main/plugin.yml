@@ -1,7 +1,8 @@
 name: Flux
 version: '1.0'
-main: dev.hiro.flux.plugin.FluxAPI
+main: dev.hiroine.flux.plugin.FluxAPI
 api-version: '1.21'
 commands:
-  example:
+  test:
+    description: ddd
 

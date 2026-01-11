@@ -9,10 +9,16 @@ import org.bukkit.event.inventory.InventoryOpenEvent
 
 class UIGlobalListener : Listener {
     @EventHandler
-    fun onInvClick(e: InventoryClickEvent) {
+    fun onInvSlotClick(e: InventoryClickEvent) {
         val holder = e.inventory.holder as? UIHolder ?: return
         e.isCancelled = true
         holder.builder.slots[e.rawSlot]?.clickHandler?.invoke(e)
+    }
+
+    @EventHandler
+    fun onInvClick(e: InventoryClickEvent) {
+        e.isCancelled = true
+        (e.inventory.holder as? UIHolder)?.builder?.clickHandler?.invoke(e)
     }
 
     @EventHandler
